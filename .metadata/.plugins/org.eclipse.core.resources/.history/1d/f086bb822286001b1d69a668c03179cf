@@ -1,0 +1,5 @@
+package com.viettel.core.dto;
+
+public class AdminUser {
+
+}

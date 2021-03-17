@@ -1,0 +1,26 @@
+package com.viettel.core.main;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.viettel.core.business.ManufacturerBO;
+import com.viettel.core.dto.ManufacturerDTO;
+import com.viettel.core.utils.ManageFile;
+
+public class ManageSolution {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		List<ManufacturerDTO> list = new ArrayList<ManufacturerDTO>();
+		ManufacturerBO manufacturerBO = new ManufacturerBO();
+		
+		list = manufacturerBO.GetListManufacturers();
+		
+		if(list!=null){
+			ManageFile.WriteFile(list);
+		}else{
+			System.out.println("Fail");
+		}
+	}
+
+}

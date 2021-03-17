@@ -1,0 +1,5 @@
+package com.viettel.core.common;
+
+public class Wrapper {
+
+}

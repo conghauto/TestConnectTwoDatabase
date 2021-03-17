@@ -1,0 +1,38 @@
+package com.viettel.core.dto;
+
+public class StaffDTO {
+	private int UserID;
+	private int DepID;
+	private String LoginName;
+
+	public StaffDTO(int userID, int depID, String loginName) {
+		super();
+		UserID = userID;
+		DepID = depID;
+		LoginName = loginName;
+	}
+
+	public int getUserID() {
+		return UserID;
+	}
+
+	public void setUserID(int userID) {
+		UserID = userID;
+	}
+
+	public int getDepID() {
+		return DepID;
+	}
+
+	public void setDepID(int depID) {
+		DepID = depID;
+	}
+
+	public String getLoginName() {
+		return LoginName;
+	}
+
+	public void setLoginName(String loginName) {
+		LoginName = loginName;
+	}
+}

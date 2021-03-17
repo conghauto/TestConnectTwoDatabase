@@ -1,0 +1,48 @@
+package com.viettel.core.dto;
+
+public class ManufacturerDTO {
+	private int IDManufacturer;
+	private String Name;
+	private String Contact;
+	private boolean IsActive;
+	
+	public ManufacturerDTO(int iDManufacturer, String name, String contact, boolean isActive) {
+		super();
+		IDManufacturer = iDManufacturer;
+		Name = name;
+		Contact = contact;
+		IsActive = isActive;
+	}
+
+	public int getIDManufacturer() {
+		return IDManufacturer;
+	}
+	
+	public void setIDManufacturer(int iDManufacturer) {
+		IDManufacturer = iDManufacturer;
+	}
+	
+	public String getName() {
+		return Name;
+	}
+	
+	public void setName(String name) {
+		Name = name;
+	}
+	
+	public String getContact() {
+		return Contact;
+	}
+	
+	public void setContact(String contact) {
+		Contact = contact;
+	}
+	
+	public boolean isIsActive() {
+		return IsActive;
+	}
+	
+	public void setIsActive(boolean isActive) {
+		IsActive = isActive;
+	}
+}

@@ -1,0 +1,55 @@
+package com.viettel.core.mapper;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.viettel.core.dto.ManufacturerDTO;
+
+public class ManufacturerMapper extends DBMapper {
+    public ManufacturerMapper() throws Exception {
+        super();
+    }
+
+    public List<ManufacturerDTO> GetListManufacturers() {
+        String query = "Select * from manufacturers";
+        List<ManufacturerDTO> list = new ArrayList<ManufacturerDTO>();
+            Connection connection = getConnection();
+            PreparedStatement ps;
+			try {
+				ps = connection.prepareStatement(query);
+	            ResultSet rs = ps.executeQuery();
+	            while (rs.next()) {
+	                int id = rs.getInt("IDManufacturer");
+	                String name = rs.getString("Name");
+	                String contact = rs.getString("Contact");
+	                boolean isActive = rs.getBoolean("IsActive");
+	                ManufacturerDTO user = new ManufacturerDTO(id, name, contact, isActive);
+	                list.add(user);
+	            }
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+        return list;
+    }
+
+    public boolean AddNewManufacturer(ManufacturerDTO manufacturer) {
+        String sql = "insert into manufacturers(Name, IsActive)" + "values(?,?)";
+        try {
+            Connection connection = getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, manufacturer.getName());
+            ps.setBoolean(2, manufacturer.isIsActive());
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+}

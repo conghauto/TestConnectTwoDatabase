@@ -1,0 +1,5 @@
+package com.viettel.core.mapper;
+
+public class AdminUserMapper {
+
+}

@@ -1,0 +1,30 @@
+package com.viettel.core.business;
+
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import com.viettel.core.dto.ManufacturerDTO;
+import com.viettel.core.mapper.ManufacturerMapper;
+
+public class ManufacturerBO{
+    public List<ManufacturerDTO> GetListManufacturers(){
+        List<ManufacturerDTO> manufacturers = null;
+        ManufacturerMapper mapper = null;
+        try {
+            mapper = new ManufacturerMapper();
+            manufacturers = mapper.GetListManufacturers();
+        } catch (Exception ex) {
+            Logger.getLogger(ManufacturerBO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally {
+            try {
+                mapper.closeConnection();
+            } catch (Exception ex) {
+                Logger.getLogger(ManufacturerBO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return manufacturers;
+    }
+
+}

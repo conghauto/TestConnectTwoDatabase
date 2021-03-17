@@ -1,0 +1,54 @@
+package com.viettel.core.mapper;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.viettel.core.dto.AdminUser;
+
+public class AdminUserMapper extends DBMapper{
+    public AdminUserMapper() throws Exception {
+        super();
+    }
+
+    public List<AdminUser> GetListAdminUsers() {
+        String query = "Select * from AdminUser";
+        List<AdminUser> list = new ArrayList<AdminUser>();
+            Connection connection = getConnection();
+            PreparedStatement ps;
+			try {
+				ps = connection.prepareStatement(query);
+	            ResultSet rs = ps.executeQuery();
+	            while (rs.next()) {
+	                int UserID = rs.getInt("UserID");
+	                int DepID  = rs.getInt("DepID");
+	                String LoginName = rs.getString("LoginName");
+	 
+	                AdminUser user = new AdminUser(UserID, DepID, LoginName);
+	                list.add(user);
+	            }
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+        return list;
+    }
+    
+    public boolean AddNewAdminUser(AdminUser adminUser) {
+        String sql = "insert into manufacturers(Name, IsActive)" + "values(?,?)";
+        try {
+            Connection connection = DBConnectionService.getConnectionFromConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, manufacturer.getName());
+            ps.setBoolean(2, manufacturer.isIsActive());
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+}

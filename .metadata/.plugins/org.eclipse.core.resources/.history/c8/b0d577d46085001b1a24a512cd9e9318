@@ -1,0 +1,20 @@
+package com.viettel.core.main;
+
+import java.sql.Connection;
+
+import com.viettel.core.dbconnection.DbConnectionService;
+
+public class ManageSolution {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Connection connecttion = DbConnectionService.getJDBCConnection();
+		
+		if(connecttion!=null){
+			System.out.println("Success");
+		}else{
+			System.out.println("Fail");
+		}
+	}
+
+}

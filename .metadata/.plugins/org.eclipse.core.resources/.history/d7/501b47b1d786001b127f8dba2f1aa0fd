@@ -1,0 +1,26 @@
+package com.viettel.core.dto;
+
+import java.util.Date;
+
+public class ActionLog {
+	private int ActionLogID;
+	private int UserID;
+	private String UserName;
+	private String ActionName;
+	private int Modun;
+	private int ObjectID;
+	private int ObjectType;
+	private Date ActionDate;
+	private String ObjectTitle;
+	private int ActionType;
+	private int DeptID;
+	private String IP;
+	private String DeptName;
+	private int ActionOrder;
+	private String IdentifyCode;
+	private String FullName;
+	private String ActionNameText;
+	private int ParentId;
+	private int IsLinkUnit;
+	
+}

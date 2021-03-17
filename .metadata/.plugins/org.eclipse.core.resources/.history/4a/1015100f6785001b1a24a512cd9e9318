@@ -1,0 +1,29 @@
+package com.viettel.core.utils;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.List;
+
+import com.viettel.core.dto.ManufacturerDTO;
+
+public class ManageFile {
+	public static void WriteFile(List<ManufacturerDTO> list) {
+		try {
+			FileOutputStream fos;
+			fos = new FileOutputStream("d://test.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			if (list != null) {
+				oos.writeObject(list);
+			}
+
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

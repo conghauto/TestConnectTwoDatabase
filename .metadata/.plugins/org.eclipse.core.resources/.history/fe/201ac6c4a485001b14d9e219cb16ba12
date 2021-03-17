@@ -1,0 +1,51 @@
+package com.viettel.core.dbconnection;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.viettel.core.business.ManufacturerBO;
+import com.viettel.core.dto.ManufacturerDTO;
+import com.viettel.core.utils.ManageFile;
+
+public class DbConnectionService {
+	public static Connection getJDBCConnection(){
+//		final String url ="jdbc:mysql://localhost:3306/quanlybanhang?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8";
+        final String url = "jdbc:sqlserver://localhost:1433;"
+                + "databaseName=QUANLYBANDIENTHOAI;"
+                + "integratedSecurity=true";
+        final String username = "DESKTOP-SN4NLF8";
+        final String password = "";
+
+		Connection connection = null;
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			connection = DriverManager.getConnection(url,username,password);
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return connection;
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Connection cnn = DbConnectionService.getJDBCConnection();
+		
+		
+		if(cnn!=null){
+			
+			System.out.println("Write success");
+		}else{
+			System.out.println("Fail");
+		}
+	}
+
+
+}

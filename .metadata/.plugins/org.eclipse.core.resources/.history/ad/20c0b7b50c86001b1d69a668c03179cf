@@ -1,0 +1,70 @@
+package com.viettel.core.dbconnection;
+
+import java.sql.*;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.mysql.cj.xdevapi.Statement;
+import com.viettel.core.business.ManufacturerBO;
+import com.viettel.core.dto.ManufacturerDTO;
+import com.viettel.core.utils.ManageFile;
+
+public class DbConnectionService {
+	public static Connection getJDBCConnectionSQL() {
+		String connectionUrl = "jdbc:sqlserver://125.234.8.83;databaseName=eDocs_19072018;user=voffice;password=voffice";
+
+		Connection connection = null;
+		try {
+			// Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			connection = DriverManager.getConnection(connectionUrl);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return connection;
+	}
+
+	public static Connection getJDBCConnectionOracle() {
+		String url = "jdbc:oracle:thin:@//27.71.232.11:1521/voffice";
+		String username = "VOFFICE_LD_NEW";
+		String password = "vofficeLD#123";
+
+		Connection connection = null;
+		try {
+			// Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			connection = DriverManager.getConnection(url, username, password);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return connection;
+	}
+
+	public static void main(String[] args) throws SQLException {
+		// TODO Auto-generated method stub
+//		Connection connection = DbConnectionService.getJDBCConnectionOracle();
+		Connection connection = DbConnectionService.getJDBCConnectionSQL();
+
+		if (connection != null) {
+//			String query = "SELECT *FROM BOOKS";
+			String query = "SELECT *FROM AdminUser";
+			try (java.sql.Statement stmt = connection.createStatement()) {
+				ResultSet rs = stmt.executeQuery(query);
+				while (rs.next())
+					System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+			} catch (SQLException e) {
+
+			}finally {
+				connection.close();
+			}
+		} else {
+			System.out.println("Fail");
+		}
+	}
+
+}

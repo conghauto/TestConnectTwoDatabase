@@ -1,0 +1,5 @@
+package com.viettel.core.utils;
+
+public class WriteFile {
+
+}
